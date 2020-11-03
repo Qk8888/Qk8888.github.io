@@ -70,25 +70,6 @@
                     this.message = "链接为空！！";
                     return;
                 }
-                // /*var startIndex = lj.lastIndexOf("http://");
-                // startIndex = (startIndex === -1) ? lj.lastIndexOf("https://") : startIndex;
-                // if (startIndex === -1) {
-                //     this.message = "请输入正确的视频链接";
-                //     return;
-                // }
-                // //去掉前面的中文
-                // lj = lj.substr(startIndex);
-                //
-                // var endIndex = lj.indexOf(" ");
-                // if (endIndex !== -1) {
-                //     lj = lj.substring(0, endIndex);
-                // }
-                //
-                // var reg = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z]{2,5}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
-                // if (lj.length < 16 || !reg.test(lj)) {
-                //     this.message = "请输入正确的视频链接";
-                //     return;
-                // }*/
                 //清空并隐藏之前的错误提示
                 this.message = "";
                 $.ajax({
