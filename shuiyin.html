@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
 </head>
 <style>
     body {
@@ -19,13 +20,102 @@
     }
 </style>
 <body>
-<div  style="text-align:center;margin:10% 0% ;border-width:1px;border-style:solid;border-color:rgb(2, 204, 245);background-color:#79918e6b;border-radius:20px;">
+<div  id="app" style="text-align:center;margin:10% 0% ;border-width:1px;border-style:solid;border-color:rgb(2, 204, 245);background-color:#79918e6b;border-radius:20px;">
     <img src="http://xsdycc.oss-cn-hangzhou.aliyuncs.com/jiexi/dy.png" width="60%">
     <br>
     <br>
     <br>
-    <input type="text" placeholder="请输入分析链接！" style="width: 56%;height: 35px;">
-    <button  type="button" class="btn btn-primary" @click="submit()">解析</button>
+    <div style="margin:0 auto ;border: aquamarine 2px solid;width:60%;">
+        <br>
+        <br>
+        <input type="text" placeholder="请输入分析链接！" id="lj" style="width: 56%;height: 35px;" value="又想骗我买马桶#搞笑 https://v.kuaishouapp.com/s/Zbo2trEo 复制此消息，打开【快手极速版】直接观看！
+">
+        <button  type="button" class="btn btn-primary" @click="submit()">解析</button>
+        <br>
+        <br>
+        <h4 style="color: red">{{message}}</h4>
+                <!--视频控件-->
+        <div  id = "div1" style="display:none ">
+           <!-- <img src="#" id="pic" height="40%">-->
+            <video src="#" id="sp" controls="controls" height="40%"  style="border: 1px red solid;">
+                您的浏览器不支持视频控件！！
+            </video>
+            <br>
+            <br>
+           <a id="xz" href="#"><button  type="button" class="btn btn-primary" @click="xz()">下载</button></a>
+            <button  type="button" class="btn btn-primary" @click="qk()">清空</button>
+        </div>
+
+    </div>
+    <br>
+    <br>
+    <h4 style="color: lawngreen">↓解析教程↓</h4>
+    <img src="http://xsdycc.oss-cn-hangzhou.aliyuncs.com/jiexi/jc.jpg" width="60%">
+
 </div>
 </body>
+<script>
+    var lj = null; //链接
+    var sp = null;
+    new Vue({
+        el: '#app',
+        data: {
+            message: '请先将视频链接粘贴到输入框',
+        },
+        methods: {
+            submit()  {
+                //获取 输入的链接
+                lj  = $("#lj").val();
+                if (lj == "") {
+                    this.message = "链接为空！！";
+                    return;
+                }
+                //清空并隐藏之前的错误提示
+                this.message = "";
+                $.ajax({
+                    type: "post",
+                    url: 'http://api.kieng.cn/shortvideo',
+                    data: {"url":lj},
+                    success: function(data) {
+                        if (data.code == 200){
+                            $("#div1").css('display','block');//元素显示
+                            $("#pic").attr('src',data.pic);// 图片控件
+                            sp = data.play;
+                            $("#sp").attr('src',sp);//视频控件
+                          // $("#xz").attr('href',data.play);//下载控件
+                            message = "视频解析成功！！！";
+                        }
+                        console.log("1111"+JSON.stringify(data));
+
+
+                    },
+                    error: function (e) {
+                        console.log("22222222"+JSON.stringify(e));
+                    }
+                });
+        },
+            xz(message) {
+                  $("#xz").attr('href',sp);
+                    var aux = document.createElement("input");
+                    aux.setAttribute("value", sp);
+                    document.body.appendChild(aux);
+                    aux.select();
+                    document.execCommand("copy");
+                    document.body.removeChild(aux);
+                    if (message == null) {
+                        alert("链接复制成功");
+                    } else{
+                        alert(message);
+                    }
+                },
+            qk(){
+                $("#lj").val("");
+                $("#div1").css('display','none');//元素显示
+            }
+
+            }
+
+    });
+
+</script>
 </html>
