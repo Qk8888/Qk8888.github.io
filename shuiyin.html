@@ -5,8 +5,27 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <title>白管の去水印工具</title>
     <link rel="shortcut icon" href="style/images/img/favicon.ico" />
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+<style>
+    body {
+        background: url(style/images/img/logo2.jpeg) no-repeat center center fixed;
+        /*兼容浏览器版本*/
+        -webkit-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+</style>
 <body>
-
+<div  style="text-align:center;margin:10% 0% ;border-width:1px;border-style:solid;border-color:rgb(2, 204, 245);background-color:#79918e6b;border-radius:20px;">
+    <img src="http://xsdycc.oss-cn-hangzhou.aliyuncs.com/jiexi/dy.png" width="60%">
+    <br>
+    <br>
+    <br>
+    <input type="text" placeholder="请输入分析链接！" style="width: 56%;height: 35px;">
+    <button  type="button" class="btn btn-primary" @click="submit()">解析</button>
+</div>
 </body>
 </html>
