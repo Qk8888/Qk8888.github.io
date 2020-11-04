@@ -2,23 +2,34 @@
 <html lang="zh">
 	<head>
 		<meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+        <!--<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">-->
        <title>白管の主页</title>
-        <link rel="stylesheet" href="style/js/ys.css">
         <link rel="shortcut icon" href="style/images/img/favicon.ico" />
         <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-        <script src="style/js/yangshi.js"></script>
-        <script src="style/js/md5.js"></script>
     </head>
-
+    <script>
+        window.onload=function(){
+            $.post("http://api.kieng.cn/inaword",{type:"f"},function(result){
+                $("#wbk").html(result.str+"                    来自："+result.creator);
+            });
+        }
+    </script>
+	<style>
+			body {
+				background: url(style/images/img/logo2.jpeg) no-repeat center center fixed;
+				/*兼容浏览器版本*/
+                -webkit-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+            }
+		</style>
 
      <body >
         <div  style="text-align:center;margin:10% 0% ;border-width:1px;border-style:solid;border-color:rgb(2, 204, 245);background-color:#79918e6b;border-radius:20px;">
           <p>
             <a href="http://wpa.qq.com/msgrd?v=3&uin=26290976&site=qq&menu=yes" target="_blank">
-          	<img style="border-radius:50%;max-width:100px;max-height:100px;" src="https://q4.qlogo.cn/g?b=qq&nk=26290976&s=140">
+          	<img style="border-radius:50%;max-width:100px;max-height:100px;" src="https://q4.qlogo.cn/g?b=qq&nk=26290976&s=140"></p>
              </a>
-          </p>
               <h1 style="color:#fff;"><strong>白管。</strong>
              </h1>
            <span id="wbk"  style="font-size:3vh;color:#fff;"></span>
@@ -48,4 +59,28 @@
         </div>
 
 </body>
+    <script language=javascript>
+        function show_date_time(){
+            window.setTimeout("show_date_time()", 1000);
+            BirthDay=new Date("11-03-2019 12:12:24");//建站日期
+            today=new Date();
+            timeold=(today.getTime()-BirthDay.getTime());
+            sectimeold=timeold/1000
+            secondsold=Math.floor(sectimeold);
+            msPerDay=24*60*60*1000
+            e_daysold=timeold/msPerDay
+            daysold=Math.floor(e_daysold);
+            e_hrsold=(daysold-e_daysold)*-24;
+            hrsold=Math.floor(e_hrsold);
+            e_minsold=(hrsold-e_hrsold)*-60;
+            minsold=Math.floor((hrsold-e_hrsold)*-60);
+            seconds=Math.floor((minsold-e_minsold)*-60);
+            momk.innerHTML=daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒" ;
+        }
+        show_date_time();
+    </script>
+    <style>
+        #momk{animation:change 10s infinite;font-weight:800; }
+        @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
+    </style>
 </html>

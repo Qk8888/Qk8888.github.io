@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <title>白管の去水印工具</title>
     <link rel="shortcut icon" href="style/images/img/favicon.ico" />
-    <link rel="stylesheet" href="style/js/ys.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
-    <script src="style/js/yangshi.js"></script>
-    <script src="style/js/md5.js"></script>
 </head>
 <style>
-
+    body {
+        background: url(style/images/img/logo2.jpeg) no-repeat center center fixed;
+        /*兼容浏览器版本*/
+        -webkit-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
 </style>
 <body>
 <div  id="app" style="text-align:center;margin:10% 0% ;border-width:1px;border-style:solid;border-color:rgb(2, 204, 245);background-color:#79918e6b;border-radius:20px;">
@@ -29,16 +32,16 @@
         <button  type="button" class="btn btn-primary" @click="submit()">解析</button>
         <br>
         <br>
-        <h4 id="h4" style="color: red">{{message}}</h4>
-        <!--视频控件-->
+        <h4 style="color: red">{{message}}</h4>
+                <!--视频控件-->
         <div  id = "div1" style="display:none ">
-            <!-- <img src="#" id="pic" height="40%">-->
+           <!-- <img src="#" id="pic" height="40%">-->
             <video src="#" id="sp" controls="controls" height="40%"  style="border: 1px red solid;">
                 您的浏览器不支持视频控件！！
             </video>
             <br>
             <br>
-            <a id="xz" href="#"><button  type="button" class="btn btn-primary" @click="xz()">下载</button></a>
+           <a id="xz" href="#"><button  type="button" class="btn btn-primary" @click="xz()">下载</button></a>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button  type="button" class="btn btn-primary" @click="qk()">清空</button>
         </div>
@@ -49,19 +52,23 @@
     <h4 style="color: lawngreen">↓解析教程↓</h4>
     <img src="http://xsdycc.oss-cn-hangzhou.aliyuncs.com/jiexi/jc.jpg" width="80%">
     <br>
+    <br><br>
+    <br><br>
     <br>
-    <br>
-    <br>
-    <h4 style="color:#fff;">本站已安全运行:<span id="momk"></span></h4>
+    <p style="color:#bd8787;">
+        <script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
+        <span style="color:#bd8787;">你的IP:<script>
+                    document.write(returnCitySN["cip"]);
+
+                    document.write(returnCitySN["cname"]);
+                   </script></span> | 2019-2020 © <a style="text-decoration:none;color:#bd8787;" href="#">白管</a>.版权所有</p>
+    <script type="text/javascript" color="255,255,255" opacity='0.7' zIndex="-2" count="200" src="style/js/canvas-nest.min.js"></script>
 
 </div>
 </body>
-<!--点击效果-->
-<script type="text/javascript" color="255,255,255" opacity='0.7' zIndex="-2" count="200" src="style/js/canvas-nest.min.js"></script>
 <script>
     var lj = null; //链接
     var sp = null;
-    var _this = this;
     new Vue({
         el: '#app',
         data: {
@@ -87,11 +94,8 @@
                             $("#pic").attr('src',data.pic);// 图片控件
                             sp = data.play;
                             $("#sp").attr('src',sp);//视频控件
-                            // $("#xz").attr('href',data.play);//下载控件
-                            $("#h4").html("视频解析成功！！！");
-                        }
-                        if (data.code == 0){
-                            $("#h4").html("服务器繁忙，请稍后再试！！！");
+                          // $("#xz").attr('href',data.play);//下载控件
+                            message = "视频解析成功！！！";
                         }
                         console.log("1111"+JSON.stringify(data));
 
@@ -101,27 +105,27 @@
                         console.log("22222222"+JSON.stringify(e));
                     }
                 });
-            },
+        },
             xz(message) {
-                $("#xz").attr('href',sp);
-                var aux = document.createElement("input");
-                aux.setAttribute("value", sp);
-                document.body.appendChild(aux);
-                aux.select();
-                document.execCommand("copy");
-                document.body.removeChild(aux);
-                if (message == null) {
-                    alert("链接复制成功");
-                } else{
-                    alert(message);
-                }
-            },
+                  $("#xz").attr('href',sp);
+                    var aux = document.createElement("input");
+                    aux.setAttribute("value", sp);
+                    document.body.appendChild(aux);
+                    aux.select();
+                    document.execCommand("copy");
+                    document.body.removeChild(aux);
+                    if (message == null) {
+                        alert("链接复制成功");
+                    } else{
+                        alert(message);
+                    }
+                },
             qk(){
                 $("#lj").val("");
                 $("#div1").css('display','none');//元素显示
             }
 
-        }
+            }
 
     });
 
