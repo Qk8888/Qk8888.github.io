@@ -5,20 +5,13 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <title>白管の去水印工具</title>
     <link rel="shortcut icon" href="style/images/img/favicon.ico" />
+    <link rel="stylesheet" href="style/js/ys.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="style/js/yangshi.js"></script>
 </head>
-<style>
-    body {
-        background: url(style/images/img/logo2.jpeg) no-repeat center center fixed;
-        /*兼容浏览器版本*/
-        -webkit-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-    }
-</style>
 <body>
 <div  id="app" style="text-align:center;margin:10% 0% ;border-width:1px;border-style:solid;border-color:rgb(2, 204, 245);background-color:#79918e6b;border-radius:20px;">
     <img src="http://xsdycc.oss-cn-hangzhou.aliyuncs.com/jiexi/dy.png" width="80%">
@@ -53,19 +46,11 @@
     <img src="http://xsdycc.oss-cn-hangzhou.aliyuncs.com/jiexi/jc.jpg" width="80%">
     <br>
     <br><br>
-    <br><br>
     <br>
-    <p style="color:#bd8787;">
-        <script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
-        <span style="color:#bd8787;">你的IP:<script>
-                    document.write(returnCitySN["cip"]);
-
-                    document.write(returnCitySN["cname"]);
-                   </script></span> | 2019-2020 © <a style="text-decoration:none;color:#bd8787;" href="#">白管</a>.版权所有</p>
-    <script type="text/javascript" color="255,255,255" opacity='0.7' zIndex="-2" count="200" src="style/js/canvas-nest.min.js"></script>
-
+    <h4 style="color:#fff;">本站已安全运行:<span id="momk"></span></h4>
 </div>
 </body>
+<script type="text/javascript" color="255,255,255" opacity='0.7' zIndex="-2" count="200" src="style/js/canvas-nest.min.js"></script>
 <script>
     var lj = null; //链接
     var sp = null;
@@ -130,4 +115,5 @@
     });
 
 </script>
+
 </html>
