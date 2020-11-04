@@ -1,6 +1,17 @@
 window.onload=function(){
+            //语录接口
     $.post("http://api.kieng.cn/inaword",{type:"f"},function(result){
         $("#wbk").html(result.str+"                    来自："+result.creator);
+    });
+        //获取qq头像昵称
+    $.get("https://api.vvhan.com/api/qq",{qq:"26290976"},function(data){
+        console.log(data);
+        $("#imgDiv").html("<a  href=\"http://wpa.qq.com/msgrd?v=3&uin=26290976&site=qq&menu=yes\" target=\"_blank\">\n" +
+            "            <img class=\"pic \" style=\"border-radius:50%;max-width:100%;max-height:100%;\" src=\"#\">\n" +
+            "            </a>");
+        $(".pic").attr("src",data.imgurl);
+        $("#bt").html("<strong>"+data.name+"</strong>");
+
     });
 
 
