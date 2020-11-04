@@ -25,7 +25,7 @@
         <button  type="button" class="btn btn-primary" @click="submit()">解析</button>
         <br>
         <br>
-        <h4 style="color: red">{{message}}</h4>
+        <h4 id="a"  style="color: red">{{message}}</h4>
                 <!--视频控件-->
         <div  id = "div1" style="display:none ">
            <!-- <img src="#" id="pic" height="40%">-->
@@ -80,7 +80,11 @@
                             sp = data.play;
                             $("#sp").attr('src',sp);//视频控件
                           // $("#xz").attr('href',data.play);//下载控件
-                            message = "视频解析成功！！！";
+                           /* message = "视频解析成功！！！";*/
+                            $("#a").text('视频解析成功!!!!');
+                        }
+                        if (data.code == 0 ){
+                            $("#a").text('服务器繁忙，请稍后再试!!!!');
                         }
                         console.log("1111"+JSON.stringify(data));
 
