@@ -1,0 +1,112 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <title>白管の网址缩短</title>
+    <link rel="shortcut icon" href="style/images/img/favicon.ico" />
+    <link rel="stylesheet" href="style/js/ys.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="style/js/yangshi.js"></script>
+</head>
+<body>
+<div  id="app" style="text-align:center;margin:10% 0% ;border-width:1px;border-style:solid;border-color:rgb(2, 204, 245);background-color:#79918e6b;border-radius:20px;">
+   <!-- <div style="margin:0 auto ;border: aquamarine 2px solid;width:80%;">-->
+        <br>
+        <br>
+        <input type="text" placeholder="请输入网址！" id="lj" style="width: 56%;height: 35px;" value="">
+        <button  type="button" class="btn btn-primary" @click="submit()">缩短</button>
+        <br>
+        <br>
+        <h4 id="a"  style="color: red">{{message}}</h4>
+        <h4 id="b"  style="color: red">{{message}}</h4>
+        <h4 id="c"  style="color: red">{{message}}</h4>
+        <div  id = "div1" style="display:none ">
+          <button  type="button" class="btn btn-primary" @click="xz()">复制</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button  type="button" class="btn btn-primary" @click="qk()">清空</button>
+        </div>
+
+
+    <br>
+    <br>
+    <h4 style="color:#fff;">本站已安全运行:<span id="momk"></span></h4>
+</div>
+</body>
+<script type="text/javascript" color="255,255,255" opacity='0.7' zIndex="-2" count="200" src="style/js/canvas-nest.min.js"></script>
+<script>
+    var lj = null; //链接
+    var sp = null;
+    new Vue({
+        el: '#app',
+        data: {
+            message: '请先将网址粘贴到输入框',
+        },
+        methods: {
+            submit()  {
+
+                //获取 输入的链接
+                lj  = $("#lj").val();
+                if (lj == "") {
+                    this.message = "链接为空！！";
+                    return;
+                }
+                //清空并隐藏之前的错误提示
+                this.message = "";
+                $("#b").text('');
+                $("#c").text('');
+                $.ajax({
+                    type: "post",
+                    url: 'http://api.kieng.cn/shorturl',
+                    data: {"url":lj},
+                    success: function(data) {
+                        if (data.code == 1){
+                            $("#div1").css('display','block');//元素显示
+                            sp = data.short;
+                            $("#a").text('网址缩短成功!!!!');
+                            $("#b").text('缩短前：'+data.long);
+                            $("#c").text('缩短后：'+sp);
+                        }else {
+                            $("#a").text('服务器繁忙，请稍后再试!!!!');
+                        }
+                        console.log("1111"+JSON.stringify(data));
+
+
+                    },
+                    error: function (e) {
+                        console.log("22222222"+JSON.stringify(e));
+                    }
+                });
+        },
+            xz(message) {
+                    var aux = document.createElement("input");
+                    aux.setAttribute("value", sp);
+                    document.body.appendChild(aux);
+                    aux.select();
+                    document.execCommand("copy");
+                    document.body.removeChild(aux);
+                    if (message == null) {
+                        alert("链接复制成功");
+                    } else{
+                        alert(message);
+                    }
+                },
+            qk(){
+                $("#lj").val("");
+                $("#a").text('');
+                $("#b").text('');
+                $("#c").text('');
+                $("#div1").css('display','none');//元素显示
+                alert("已清空！！");
+            }
+
+            }
+
+    });
+
+</script>
+
+</html>
