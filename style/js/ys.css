@@ -7,3 +7,33 @@ body {
 }
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
+.dhl{
+    border-radius:10px;padding:7px 30px;color:#fff;border-style:solid;text-decoration:none;
+    animation: glow 800ms ease-out infinite alternate;
+}
+#imgDiv img{
+    border: 2px solid red;
+    animation: glow 800ms ease-out infinite alternate;
+}
+@keyframes glow {
+    0% {
+        border-color: red;
+        box-shadow: 0 0 5px rgba(0, 255, 0, .2), inset 0 0 5px rgba(0, 255, 0, .1), 0 1px 0 blue;
+    }
+    25% {
+        border-color: navy;
+        box-shadow: 0 0 20px rgba(0, 255, 0, .6), inset 0 0 10px rgba(0, 255, 0, .4), 0 1px 0  navy;
+    }
+    50% {
+        border-color: darkblue;
+        box-shadow: 0 0 20px rgba(0, 255, 0, .6), inset 0 0 10px rgba(0, 255, 0, .4), 0 1px 0 darkblue;
+    }
+    75% {
+        border-color: blueviolet;
+        box-shadow: 0 0 20px rgba(0, 255, 0, .6), inset 0 0 10px rgba(0, 255, 0, .4), 0 1px 0 blueviolet;
+    }
+    100% {
+        border-color:#ffffff;
+        box-shadow: 0 0 20px rgba(0, 255, 0, .6), inset 0 0 10px rgba(0, 255, 0, .4), 0 1px 0 #fff;
+    }
+}
