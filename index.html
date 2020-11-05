@@ -9,10 +9,16 @@
         <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
         <script src="style/js/yangshi.js"></script>
         <script src="style/js/pf.js"></script>
-
     </head>
      <body >
-        <div  style="text-align:center;margin:10% 0% ;border-width:1px;border-style:solid;border-color:rgb(2, 204, 245);background-color:#79918e6b;border-radius:20px;">
+     <!--   不开js提示-->
+     <noscript>
+         <marquee behavior='alternate' scrollamount="10" >
+            <b><h1 style="width: 100%;height: 100%;color: white;margin:25% 0%">请您开启浏览器的Javascript插件</h1></b>
+         </marquee>
+     </noscript>
+        <div id="app" style="display:none;text-align:center; margin:10% 0% ;border-width:1px;border-style:solid;border-color:rgb(2, 204, 245);background-color:#79918e6b;border-radius:20px;">
+
             <p>
             <a href="http://wpa.qq.com/msgrd?v=3&uin=26290976&site=qq&menu=yes" target="_blank">
           	<img style="border-radius:50%;max-width:100px;max-height:100px;" class="pic" src="#">
@@ -28,11 +34,18 @@
            <a class="dhl" href="shuiyin.html">去水印工具</a>
            <a class="dhl" href="shuouduan.html">网址缩短</a>
            <a class="dhl" href="http://wx.bhurl.net/tk?s=BzzphJ">优惠券专区</a>
+           <a class="dhl" href="souti.html">网课搜题</a>
            <a class="dhl" href="#">主页</a>
-           <a class="dhl" href="#">主页</a>
-           <a class="dhl" href="#">主页</a>
-           <a class="dhl" target="_blank" href="https://blog.kieng.cn/">友情链接</a>
-         </p>
+               <select onchange="yqlj()" id="yqlj" style="padding-bottom: 200px;background-color: transparent;color: white;border-radius:10px;border-style:solid;padding:10px 30px;text-decoration:none; animation: glow 800ms ease-out infinite alternate;" >
+                   <option  style="color:  white ; font-size: 10pt;background-color: rgba(23,23,23,0.95); "value="0"> 友情链接</option>
+                   <option style="color:  white ; font-size: 10pt;background-color: rgba(23,23,23,0.95);" value="https://blog.kieng.cn/" >KIENG博客</option>
+                   <option style="color:  white ; font-size: 10pt;background-color: rgba(23,23,23,0.95);" value="https://jinan6.vip/" data-iconurl="jquery-ui-logo.png">仅安的博客</option>
+               </select>
+
+
+            </p>
+
+
 
             <p style="color:#fff;">本站已安全运行:<span id="momk"></span></p>
          <p style="color:#bd8787;">
@@ -48,5 +61,24 @@
 <!--        漂浮广告-->
         <div id="imgDiv" style="width:50px;height:50px;color: #fff;border: 0px solid red">
         </div>
+
 </body>
+<script>
+    function yqlj() {
+     var a = $('#yqlj').val();
+     if (a == 0){
+        return;
+     }else {
+         // alert(a);
+            //选择默认下拉
+         $('#yqlj').find("option").eq(0).prop("selected",true);
+         window.open(a);
+
+     }
+
+    }
+    function lk() {
+
+    }
+</script>
 </html>

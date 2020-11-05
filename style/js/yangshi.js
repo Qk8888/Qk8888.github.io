@@ -1,4 +1,6 @@
 window.onload=function(){
+    //主页样式显示
+    $("#app").css('display','block');//元素显示
             //语录接口
     $.post("http://api.kieng.cn/inaword",{type:"f"},function(result){
         $("#wbk").html(result.str+"                    来自："+result.creator);
