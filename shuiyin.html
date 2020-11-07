@@ -84,6 +84,7 @@
                     url: 'http://api.kieng.cn/shortvideo',
                     data: {"url":lj},
                     success: function(data) {
+                        console.log(data);
                         if (data.code == 200){
                             $("#div1").css('display','block');//元素显示
                             $("#pic").attr('src',data.pic);// 图片控件

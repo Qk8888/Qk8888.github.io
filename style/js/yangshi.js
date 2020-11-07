@@ -1,9 +1,10 @@
 window.onload=function(){
     //主页样式显示
     $("#app").css('display','block');//元素显示
-            //语录接口
-    $.post("http://api.kieng.cn/inaword",{type:"f"},function(result){
-        $("#wbk").html(result.str+"                    来自："+result.creator);
+   /* $("#app").html("<strong>"+data.name+"</strong>");*/
+            //语录接口 接口来自 韩小韩
+    $.post("https://api.vvhan.com/api/ian?type=json",{/*type:"f"*/},function(result){ //http://api.kieng.cn/inaword
+        $("#wbk").html(result.ishan);
     });
         //获取qq头像昵称
     $.get("https://api.vvhan.com/api/qq",{qq:"26290976"},function(data){
@@ -17,9 +18,39 @@ window.onload=function(){
     });
 
 
+
+
     show_date_time();
 }
+//屏蔽鼠标右键
+document.oncontextmenu = function () {
+    alert("禁止右键！")
+    return false;
+}
+document.onkeydown = function () {
+    var e = window.event || arguments[0];
+    //屏蔽F12
+    if (e.keyCode == 123) {
+        alert("禁止f12");
+        return false;
+        //屏蔽Ctrl+Shift+I
+    } else if ((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)) {
+        alert("禁止Ctrl+Shift+I");
+        return false;
+        //屏蔽Shift+F10
+    } else if ((e.shiftKey) && (e.keyCode == 121)) {
+        alert("禁止Shift+F10");
+        return false;
+    }
+};
 
+
+function sjyy() {
+    //语录接口 接口来自 韩小韩
+    $.post("https://api.vvhan.com/api/ian?type=json",{/*type:"f"*/},function(result){ //http://api.kieng.cn/inaword
+        $("#wbk").html(result.ishan);
+    });
+}
 function show_date_time(){
     window.setTimeout("show_date_time()", 1000);
     BirthDay=new Date("11-03-2019 12:12:24");//建站日期

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-    <title>白管の网课搜题</title>
+  <!--  <meta http-equiv="Access-Control-Allow-Origin" content="*" />-->
+    <title>白管の刷步数工具</title>
     <link rel="shortcut icon" href="style/images/img/favicon.ico" />
     <link rel="stylesheet" href="style/js/ys.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
@@ -24,18 +25,22 @@
    <!-- <div style="margin:0 auto ;border: aquamarine 2px solid;width:80%;">-->
         <br>
         <br>
-        <input type="text" placeholder="请输入题目" id="lj" style="width: 56%;height: 35px;" value="">
-        <button  type="button" class="btn btn-primary" @click="submit()">搜索</button>
+        <input type="text" placeholder="小米运动账号" id="mobile" style="width: 40%;height: 35px;" value="">
+    <br>
+    <br>
+        <input type="password" placeholder="小米运动密码" id="password" style="width: 40%;height: 35px;" value="">
+    <br>
+    <br>
+        <input type="number" placeholder="步数，最高98800" id="count" style="width: 40%;height: 35px;" value="">
+    <br>
+    <br>
+        <button  type="button" class="btn btn-success" style="width: 20%;" @click="submit()">提交</button>
+        <button  type="button" class="btn btn-danger" style="width: 20%;" @click="qk()" >清空</button>
         <br>
         <br>
         <h4 id="a"  style="color: red">{{message}}</h4>
         <h4 id="b"  style="color: red">{{message}}</h4>
         <h4 id="c"  style="color: red">{{message}}</h4>
-        <div  id = "div1" style="display:none ">
-            <button  type="button" class="btn btn-primary" @click="qk()">再搜一题</button>
-        </div>
-
-
     <br>
     <br>
     <h4 style="color:#fff;">本站已安全运行:<span id="momk"></span></h4>
@@ -45,20 +50,29 @@
 </body>
 <script type="text/javascript" color="255,255,255" opacity='0.7' zIndex="-2" count="200" src="style/js/canvas-nest.min.js"></script>
 <script>
-    var lj = null; //链接
     var sp = null;
     new Vue({
         el: '#app',
         data: {
-            message: '请先将题目输入到文本框',
+            message: '请先填写以上必填项！！！',
         },
         methods: {
             submit()  {
 
-                //获取 输入的链接
-                lj  = $("#lj").val();
-                if (lj == "") {
-                    this.message = "文本框为空！！";
+                //获取 文本框内容
+                var  mobile  = $("#mobile").val();
+                var  password  = $("#password").val();
+                var  count  = $("#count").val();
+                var myreg = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/;
+                if ( mobile== ""&& password== "" && count== "") {
+                    this.message = "请填写完整！！";
+                    return;
+                }
+                if (mobile.length != 11){
+                    this.message = "手机号不完整！！";
+                    return;
+                }else  if (!myreg.test(mobile)){
+                    this.message = "请输入有效的手机号码！！";
                     return;
                 }
                 //清空并隐藏之前的错误提示
@@ -67,22 +81,18 @@
                 $("#c").text('');
                 $.ajax({
                     type: "get",
-                    url: 'https://chati.lxl66.cn/v1/check',
-                    data: {"clientId":1245,"clientSecretKey":"f2505330138d82b946d72f2a642d30d4","question":lj},
-                    contentType:"x-www-form-urlencoded",
+                    url: ' http://shuabu.net/api/mi/submit',
+                    dataType: 'json',
+                    data: {"mobile":mobile,"password":password,"count":count},
                     success: function(data) {
                         console.log(data);
-                        return ;
-                        // if (data.success == "false"){
-                        //     $("#div1").css('display','block');//元素显示
-                        //     /*sp = data.short;*/
-                        //     $("#a").text('服务器繁忙!!!!');
-                        //    /* $("#b").text('缩短前：'+data.long);
-                        //     $("#c").text('缩短后：'+sp);*/
-                        // }else {
-                        //     $("#a").text('服务器繁忙，请稍后再试!!!!');
-                        // }
-                        // console.log("1111"+JSON.stringify(data));
+                        return;
+                        if (data.success == "false"){
+                            $("#a").text('服务器繁忙!!!!');
+                        }else {
+                            $("#a").text('服务器繁忙，请稍后再试!!!!');
+                        }
+                        console.log("1111"+JSON.stringify(data));
 
 
                     },
@@ -92,27 +102,12 @@
                     }
                 });
         },
-            xz(message) {
-                    var aux = document.createElement("input");
-                    aux.setAttribute("value", sp);
-                    document.body.appendChild(aux);
-                    aux.select();
-                    document.execCommand("copy");
-                    document.body.removeChild(aux);
-                    if (message == null) {
-                        alert("链接复制成功");
-                    } else{
-                        alert(message);
-                    }
-                },
             qk(){
-                $("#lj").val("");
-                $("#a").text('');
-                $("#b").text('');
-                $("#c").text('');
-                $("#div1").css('display','none');//元素显示
-                alert("已清空！！");
+                $("#mobile").val(""); //清空输入框
+                $("#password").val(""); //清空输入框
+                $("#count").val(""); //清空输入框
             }
+
 
             }
 
