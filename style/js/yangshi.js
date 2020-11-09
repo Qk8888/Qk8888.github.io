@@ -16,8 +16,11 @@ window.onload=function(){
         $("#bt").html("<strong>"+data.name+"</strong>");
 
     });
-
-
+   //标签
+    window.onblur=function(){        
+        document.title="回来啊qwq";    
+        };    
+        </script>
 
 
     show_date_time();
