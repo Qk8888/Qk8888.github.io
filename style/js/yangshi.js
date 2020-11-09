@@ -27,7 +27,7 @@ window.onload=function(){
 }
 //屏蔽鼠标右键
 document.oncontextmenu = function () {
-    alert("禁止右键！")
+  
     return false;
 }
 document.onkeydown = function () {
