@@ -20,7 +20,7 @@ window.onload=function(){
     window.onblur=function(){        
         document.title="回来啊qwq";    
         };    
-        </script>
+        
 
 
     show_date_time();
