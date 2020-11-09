@@ -17,9 +17,9 @@ window.onload=function(){
 
     });
    //标签
-    window.onblur=function(){        
-        document.title="回来啊qwq";    
-        };    
+    //window.onblur=function(){        
+      //  document.title="回来啊qwq";    
+        //};    
         
 
 
