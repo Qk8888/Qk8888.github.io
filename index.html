@@ -91,7 +91,11 @@
          // alert(a);
             //选择默认下拉
          $('#yqlj').find("option").eq(0).prop("selected",true);
-         window.open(a);
+          if (confirm("确定跳转到友情链接？")){
+             window.open(a);
+         }else {
+             return;
+         }
 
      }
 
