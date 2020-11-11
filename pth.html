@@ -1,0 +1,44 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>证书验证结果</title>
+    <link rel="stylesheet" href="http://www.cltt.org/QR_code/css/base.css">
+    <link rel="stylesheet" href="http://www.cltt.org/QR_code/css/page.css">
+    <script src="http://www.cltt.org/QR_code/js/flexible.js"></script>
+    <script>
+        window.onload=function(){
+            var idcard=document.getElementById("idcard");
+            var content=idcard.innerHTML;
+            var code=content.substring(content.length-8);
+            var codestart=content.substring(0,content.length-8);
+            idcard.innerHTML = codestart + '<font style="position:absolute;top:0.09rem;">********</font>';
+        }
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <header>证书认证结果</header>
+    <div class="content">
+        <div class="photo-area">
+            <!--<img alt="">-->
+        </div>
+        <ul class="detail detail-remark">
+            <li><span class="item-result">姓&emsp;&emsp;名：秦坤坤</span></li>
+            <li><span class="item-result">性&emsp;&emsp;别：男</span></li>
+            <li><span class="item-result" id="idcard">身份证号：3708262000********</span></li>
+            <li><span class="item-result">测试时间：2019年06月22日</span></li>
+            <li><span class="item-result">测试机构：山东交通职业学院普通话培训测试站</span></li>
+            <li><span class="item-result">成&emsp;&emsp;绩：98.0 分</span></li>
+            <li><span class="item-result">等&emsp;&emsp;级：一级甲等</span></li>
+            <li><span class="item-result">证书编号：3719078001923</span></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
