@@ -21,22 +21,20 @@ window.onload=function(){
 }
 //屏蔽鼠标右键
 document.oncontextmenu = function () {
-    alert("禁止右键！")
     return false;
 }
 document.onkeydown = function () {
     var e = window.event || arguments[0];
     //屏蔽F12
     if (e.keyCode == 123) {
-        alert("禁止f12");
         return false;
         //屏蔽Ctrl+Shift+I
     } else if ((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)) {
-        alert("禁止Ctrl+Shift+I");
+      
         return false;
         //屏蔽Shift+F10
     } else if ((e.shiftKey) && (e.keyCode == 121)) {
-        alert("禁止Shift+F10");
+        
         return false;
     }
 };
