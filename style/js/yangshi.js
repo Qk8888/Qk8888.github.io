@@ -3,11 +3,11 @@ window.onload=function(){
     $("#app").css('display','block');//元素显示
    /* $("#app").html("<strong>"+data.name+"</strong>");*/
             //语录接口 接口来自 韩小韩
-    $.post("https://api.vvhan.com/api/ian?type=json",{/*type:"f"*/},function(result){ //http://api.kieng.cn/inaword
-        $("#wbk").html(result.ishan);
+    $.post("https://api.oioweb.cn/api/yiyan.php",{/*type:"f"*/},function(result){ //http://api.kieng.cn/inaword
+        $("#wbk").html(result);
     });
         //获取qq头像昵称
-    $.get("https://api.vvhan.com/api/qq",{qq:"26290976"},function(data){
+    $.get("https://api.oioweb.cn/api/qq.php",{qq:"26290976"},function(data){
         console.log(data);
         $("#imgDiv").html("<a  href=\"http://wpa.qq.com/msgrd?v=3&uin=26290976&site=qq&menu=yes\" target=\"_blank\">\n" +
             "            <img class=\"pic \" style=\"border-radius:50%;max-width:100%;max-height:100%;\" src=\"#\">\n" +
@@ -16,18 +16,12 @@ window.onload=function(){
         $("#bt").html("<strong>"+data.name+"</strong>");
 
     });
-   //标签
-    //window.onblur=function(){        
-      //  document.title="回来啊qwq";    
-        //};    
-        
-
 
     show_date_time();
 }
 //屏蔽鼠标右键
 document.oncontextmenu = function () {
-  
+    alert("禁止右键！")
     return false;
 }
 document.onkeydown = function () {
@@ -50,8 +44,8 @@ document.onkeydown = function () {
 
 function sjyy() {
     //语录接口 接口来自 韩小韩
-    $.post("https://api.vvhan.com/api/ian?type=json",{/*type:"f"*/},function(result){ //http://api.kieng.cn/inaword
-        $("#wbk").html(result.ishan);
+    $.post("https://api.oioweb.cn/api/yiyan.php",{/*type:"f"*/},function(result){ //http://api.kieng.cn/inaword
+        $("#wbk").html(result);
     });
 }
 function show_date_time(){
