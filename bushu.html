@@ -42,6 +42,18 @@
         <h4 id="b"  style="color: red">{{message}}</h4>
         <h4 id="c"  style="color: red">{{message}}</h4>
     <br>
+    <div style="color: green; margin:auto 0%;text-align:left">
+        <h3>使用帮助：</h3>
+    <ol>
+        <li>下载小米运动APP,安卓可在各大应用市场下载。</li>
+        <li>苹果可在App Store或其他平台下载。</li>
+        <li>安装APP并注册账号后点击-我-数据共享-绑定至相关微信设备即可。</li>
+        <li>绑定微信后，在本页面输入刚刚注册的账号及要修改的步数点击提交修改。</li>
+        <li>自定义步数支持1-98800步，输入-1直接刷到98800步，微信上限98800步。</li>
+        <li>刷步时今日会采用今日提交的最大值作为运动步数，推荐2-3W就可以霸榜了。</li>
+        <li>偶尔一天98800没事，连续98800必定异常，异常表现为一直0步，自己走路也不会增加步数。</li>
+    </ol>
+    </div>
     <br>
     <h4 style="color:#fff;">本站已安全运行:<span id="momk"></span></h4>
 </div>
@@ -50,6 +62,7 @@
 </body>
 <script type="text/javascript" color="255,255,255" opacity='0.7' zIndex="-2" count="200" src="style/js/canvas-nest.min.js"></script>
 <script>
+    var  _this = this;
     var sp = null;
     new Vue({
         el: '#app',
@@ -58,7 +71,6 @@
         },
         methods: {
             submit()  {
-
                 //获取 文本框内容
                 var  mobile  = $("#mobile").val();
                 var  password  = $("#password").val();
@@ -81,23 +93,36 @@
                 $("#c").text('');
                 $.ajax({
                     type: "get",
-                    url: ' http://shuabu.net/api/mi/submit',
-                    dataType: 'json',
-                    data: {"mobile":mobile,"password":password,"count":count},
+                    url: 'http://3g.gljlw.com/jsonp/bs.php?',
+                    dataType: 'jsonp',
+                    jsonp: "callback",
+                    data: {"mobile":mobile,"psw":password,"step":count,type:2},
                     success: function(data) {
                         console.log(data);
-                        return;
-                        if (data.success == "false"){
-                            $("#a").text('服务器繁忙!!!!');
-                        }else {
-                            $("#a").text('服务器繁忙，请稍后再试!!!!');
+                        if (data.code == 1){
+                             $("#a").text('同步步数成功，请打开小米运动APP重新登录查看！(需要几分钟同步时间，不用重复提交)');
+                             $("#b").text('同步步数成功，请打开小米运动APP重新登录查看！(需要几分钟同步时间，不用重复提交)');
+                             $("#c").text('同步步数成功，请打开小米运动APP重新登录查看！(需要几分钟同步时间，不用重复提交)');
+                        }else if (data.code == 2){
+                            $("#a").text('刷步数失败了，请检查账号、密码和步数是否输入正确！');
+                            $("#b").text('刷步数失败了，请检查账号、密码和步数是否输入正确！');
+                            $("#c").text('刷步数失败了，请检查账号、密码和步数是否输入正确！');
+                        }else if(data.code == 9) {
+                            $("#a").text('刷这么多，你不怕封号吗，你是会飞天吗？');
+                            $("#b").text('刷这么多，你不怕封号吗，你是会飞天吗？');
+                            $("#c").text('刷这么多，你不怕封号吗，你是会飞天吗？');
+                        }
+                        else {
+                            $("#a").text('服务器繁忙，请稍后再试！');
+                            $("#b").text('服务器繁忙，请稍后再试！');
+                            $("#c").text('服务器繁忙，请稍后再试！');
                         }
                         console.log("1111"+JSON.stringify(data));
 
 
                     },
                     error: function (e) {
-                        $("#a").text('接口待接入!!!!');
+                        $("#a").text('服务器繁忙，请稍后再试！!!!!');
                         console.log("22222222"+JSON.stringify(e));
                     }
                 });
