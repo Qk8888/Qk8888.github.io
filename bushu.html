@@ -96,32 +96,33 @@
                 $("#b").text('');
                 $("#c").text('');
                 $.ajax({
-                    type: "get",
-                    url: 'http://3g.gljlw.com/jsonp/bs.php?',
-                    dataType: 'jsonp',
-                    jsonp: "callback",
-                    data: {"mobile":mobile,"psw":password,"step":count,type:2},
+                    type: "post",
+                    url: "https://api.rncen.com/API/xm.php ", /*'http://3g.gljlw.com/jsonp/bs.php?',*/
+                    // dataType: 'jsonp',
+                    // jsonp: "callback",
+                    data: {"phone":mobile,"password":password,"step":count},
                     success: function(data) {
                         console.log(data);
-                        if (data.code == 1){
+                        var code = data.substr(8,1);
+                        if (code == 1){
                              $("#a").text('同步步数成功，请打开小米运动APP重新登录查看！(需要几分钟同步时间，不用重复提交)');
                              $("#b").text('同步步数成功，请打开小米运动APP重新登录查看！(需要几分钟同步时间，不用重复提交)');
                              $("#c").text('同步步数成功，请打开小米运动APP重新登录查看！(需要几分钟同步时间，不用重复提交)');
-                        }else if (data.code == 2){
+                        }else if (code == "-"){
                             $("#a").text('刷步数失败了，请检查账号、密码和步数是否输入正确！');
                             $("#b").text('刷步数失败了，请检查账号、密码和步数是否输入正确！');
                             $("#c").text('刷步数失败了，请检查账号、密码和步数是否输入正确！');
-                        }else if(data.code == 9) {
+                        }/*else if(data.code == 9) {
                             $("#a").text('刷这么多，你不怕封号吗，你是会飞天吗？');
                             $("#b").text('刷这么多，你不怕封号吗，你是会飞天吗？');
                             $("#c").text('刷这么多，你不怕封号吗，你是会飞天吗？');
-                        }
+                        }*/
                         else {
                             $("#a").text('服务器繁忙，请稍后再试！');
                             $("#b").text('服务器繁忙，请稍后再试！');
                             $("#c").text('服务器繁忙，请稍后再试！');
                         }
-                        console.log("1111"+JSON.stringify(data));
+                        console.log("1111"+data.code);
 
 
                     },
