@@ -97,9 +97,9 @@
                 $("#c").text('');
                 $.ajax({
                     type: "post",
-                    url: "https://api.rncen.com/API/xm.php ", /*'http://3g.gljlw.com/jsonp/bs.php?',*/
-                    // dataType: 'jsonp',
-                    // jsonp: "callback",
+                    url:/* "https://api.rncen.com/API/xm.php ", */'http://3g.gljlw.com/jsonp/bs.php?',
+                    dataType: 'jsonp',
+                    jsonp: "callback",
                     data: {"phone":mobile,"password":password,"step":count},
                     success: function(data) {
                         console.log(data);
